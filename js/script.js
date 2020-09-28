@@ -25,6 +25,23 @@ $(document).ready(function () {
       $("#to-do-list").append(html);
     }
   }
+
+  // FUNZIONE CHE PRENDE UN OGGETTO COME ARGOMENTO E LO STAMPA.
+  function renderElement(data) {
+
+    // Compilo handlebars, il context e aggiungo alla lista.
+    var source = $("#list-template").html();
+    var template = Handlebars.compile(source);
+
+    var context = {
+      "id": data.id,
+      "text": data.text
+    };
+
+    var html = template(context);
+    $("#to-do-list").append(html);
+  }
+
   // FINE FUNZIONI
 
   // CODICE
@@ -48,6 +65,36 @@ $(document).ready(function () {
 
   // EVENTI
 
+  // 1. Al click sul bottone, parte una chiamata POST che aggiunge la cosa
+  //    da fare scritta nell'input al server e alla lista stampata.
+  $("#to-do-button").click(
+    function () {
+
+      var elemento = $("#to-do-input").val();
+      // Pulisco il campo.
+      $("#to-do-input").val("");
+
+      if (elemento != "") {
+
+        $.ajax(
+          {
+            "url": "http://157.230.17.132:3016/todos",
+            "method": "POST",
+            "data": {
+              "text": elemento
+            },
+            "success": function (data) {
+              // Passo il data ad una funzione che stampa l'elemento.
+              renderElement(data);
+            },
+            "error": function (err) {
+              alert("Errore!");
+            }
+          }
+        );
+      }
+    }
+  );
   // FINE EVENTI
 
 
