@@ -10,6 +10,17 @@
   </head>
   <body>
 
+    <div class="container">
+      <h1>To do list</h1>
+      <ul id="to-do-list">
+
+      </ul>
+    </div>
+    <!-- TEMPLATE -->
+    <script id="list-template" type="text/x-handlebars-template">
+      <li id="{{id}}">{{text}}</li>
+    </script>
+    <!-- /TEMPLATE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" charset="utf-8"></script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
