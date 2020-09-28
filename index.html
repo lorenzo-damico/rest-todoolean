@@ -15,12 +15,19 @@
       <ul id="to-do-list">
 
       </ul>
-      <input id="to-do-input" type="text" placeholder="Inserisci una cosa da fare">
-      <button id="to-do-button" type="button">Aggiungi</button>
+      <div class="add">
+        <input id="to-do-input" type="text" placeholder="Inserisci una cosa da fare">
+        <button id="to-do-button" type="button">Aggiungi</button>
+      </div>
     </div>
     <!-- TEMPLATE -->
     <script id="list-template" type="text/x-handlebars-template">
-      <li id="{{id}}">{{text}} <span class="delete">X</span></li>
+      <li id="{{id}}">
+        <span class="text">{{text}}</span>
+        <span class="delete">X</span>
+        <input class="modify-input" type="text" placeholder="Inserisci modifica">
+        <button class="modify-button" type="button">Applica</button>
+      </li>
     </script>
     <!-- /TEMPLATE -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js" charset="utf-8"></script>

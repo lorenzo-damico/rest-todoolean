@@ -104,6 +104,7 @@ $(document).ready(function () {
 
         var id = $(this).parent("li").attr("id");
         var elemento = $(this).parent("li");
+
         $.ajax(
           {
             "url": "http://157.230.17.132:3016/todos/" + id,
@@ -120,6 +121,35 @@ $(document).ready(function () {
     }
   );
 
+  // 3. Al click sul bottone, parte una chiamata PATCH che modifica l'elemento
+  //    sul server e sulla lista.
+  $("#to-do-list").on("click", ".modify-button",
+    function () {
+
+        var value = $(this).siblings(".modify-input").val();
+        $(this).siblings(".modify-input").val("");
+        var id = $(this).parent("li").attr("id");
+        var elemento = $(this).siblings(".text");
+
+        $.ajax(
+          {
+            "url": "http://157.230.17.132:3016/todos/" + id,
+            "method": "PATCH",
+            "data": {
+              "text": value
+            },
+            "success": function (data) {
+              
+              elemento.text(data.text);
+            },
+            "error": function (err) {
+              alert("Errore!");
+            }
+          }
+        );
+
+    }
+  );
   // FINE EVENTI
 
 
