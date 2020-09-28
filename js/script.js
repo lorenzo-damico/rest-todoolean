@@ -128,25 +128,29 @@ $(document).ready(function () {
 
         var value = $(this).siblings(".modify-input").val();
         $(this).siblings(".modify-input").val("");
-        var id = $(this).parent("li").attr("id");
-        var elemento = $(this).siblings(".text");
 
-        $.ajax(
-          {
-            "url": "http://157.230.17.132:3016/todos/" + id,
-            "method": "PATCH",
-            "data": {
-              "text": value
-            },
-            "success": function (data) {
-              
-              elemento.text(data.text);
-            },
-            "error": function (err) {
-              alert("Errore!");
+        if (value != "") {
+
+          var id = $(this).parent("li").attr("id");
+          var elemento = $(this).siblings(".text");
+
+          $.ajax(
+            {
+              "url": "http://157.230.17.132:3016/todos/" + id,
+              "method": "PATCH",
+              "data": {
+                "text": value
+              },
+              "success": function (data) {
+
+                elemento.text(data.text);
+              },
+              "error": function (err) {
+                alert("Errore!");
+              }
             }
-          }
-        );
+          );
+        }
 
     }
   );
