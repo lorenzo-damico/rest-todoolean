@@ -52,6 +52,7 @@ $(document).ready(function () {
       "url": "http://157.230.17.132:3016/todos",
       "method": "GET",
       "success": function (data) {
+        console.log(data);
         // Passo il data ad una funzione che stampi la lista.
         renderList(data);
       },
@@ -95,6 +96,30 @@ $(document).ready(function () {
       }
     }
   );
+
+  // 2. Al click sulla X rossa, viene effettuata una chiamata DELETE che
+  //    elimina l'elemento dal server e dalla lista.
+  $("#to-do-list").on("click", ".delete",
+    function () {
+
+        var id = $(this).parent("li").attr("id");
+        var elemento = $(this).parent("li");
+        $.ajax(
+          {
+            "url": "http://157.230.17.132:3016/todos/" + id,
+            "method": "DELETE",
+            "success": function (data) {
+              elemento.remove();
+            },
+            "error": function (err) {
+              alert("Errore!");
+            }
+          }
+        );
+
+    }
+  );
+
   // FINE EVENTI
 
 
