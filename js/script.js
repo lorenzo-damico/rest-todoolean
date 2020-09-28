@@ -154,6 +154,13 @@ $(document).ready(function () {
 
     }
   );
+
+  $("#to-do-list").on("click", ".edit",
+    function () {
+
+      $(this).siblings(".modify-input, .modify-button").toggle();
+    }
+  );
   // FINE EVENTI
 
 
